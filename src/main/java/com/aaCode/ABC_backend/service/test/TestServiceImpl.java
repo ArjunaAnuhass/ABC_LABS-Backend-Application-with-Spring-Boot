@@ -37,7 +37,7 @@ public class TestServiceImpl implements TestService{
         test.setDescription(testRequest.getDescription());
         test.setPrice(testRequest.getPrice());
 
-        Technician technician = technicianRepo.findById(testRequest.getCateId()).orElseThrow();
+        Technician technician = technicianRepo.findById(testRequest.getTechId()).orElseThrow();
         test.setTechnician(technician);
 
         return testRepo.save(test).getRequestDto();
@@ -51,19 +51,19 @@ public class TestServiceImpl implements TestService{
         return tests.stream().map(Test::getRequestDto).collect(Collectors.toList());
     }
 
-//    public List<TestRequest> getAllTestByName(String testName){
-//        List<Test> tests = testRepo.findAllByNameContaining(testName);
-//
-//        return tests.stream().map(Test::getRequestDto).collect(Collectors.toList());
-//    }
+    public List<TestRequest> getAllTestByTestName(String testName){
+        List<Test> tests = testRepo.findAllByTestNameContaining(testName);
 
-    public boolean deleteTest(Long id){
-        Optional<Test> optionalTest = testRepo.findById(id);
-        if (optionalTest.isPresent()){
-            testRepo.deleteById(id);
-
-            return true;
-        }
-        return false;
+        return tests.stream().map(Test::getRequestDto).collect(Collectors.toList());
     }
+
+//    public boolean deleteTest(Long id){
+//        Optional<Test> optionalTest = testRepo.findById(id);
+//        if (optionalTest.isPresent()){
+//            testRepo.deleteById(id);
+//
+//            return true;
+//        }
+//        return false;
+//    }
 }

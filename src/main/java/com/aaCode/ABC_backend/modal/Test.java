@@ -39,7 +39,8 @@ public class Test {
         testRequest.setTestName(testName);
         testRequest.setDescription(description);
         testRequest.setPrice(price);
-        testRequest.setCateId(technician.getTechnicianId());
+        testRequest.setTechId(technician.getTechnicianId());
+        testRequest.setTechName(technician.getFirstname());
 
         return testRequest;
     }

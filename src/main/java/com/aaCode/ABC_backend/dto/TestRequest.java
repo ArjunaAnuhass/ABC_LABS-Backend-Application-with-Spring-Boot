@@ -11,7 +11,8 @@ public class TestRequest {
     private String testName;
     private String description;
     private Long price;
-    private Long cateId;
+    private Long techId;
+    private String techName;
 //    private String technicianName;
 
 

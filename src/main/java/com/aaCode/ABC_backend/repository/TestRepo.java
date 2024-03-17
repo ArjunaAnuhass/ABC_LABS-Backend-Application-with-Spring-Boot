@@ -13,5 +13,5 @@ import java.util.Optional;
 @EnableJpaRepositories
 public interface TestRepo extends JpaRepository<Test, Long> {
 
-//    List<Test> findAllByNameContaining(String title);
+    List<Test> findAllByTestNameContaining(String title);
 }

@@ -32,7 +32,7 @@ public class SecurityConfig {
                         .requestMatchers("api/v1/technician/**").permitAll()
                         .requestMatchers("api/v1/patient/**").permitAll()
                         .requestMatchers("api/v1/doctor/**").permitAll()
-                        .requestMatchers("api/v1/test/createTest/**").permitAll()
+                        .requestMatchers("api/v1/test/**").permitAll()
                         .anyRequest()
                         .authenticated()
                 )

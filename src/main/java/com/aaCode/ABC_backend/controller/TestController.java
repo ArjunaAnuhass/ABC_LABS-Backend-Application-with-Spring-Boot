@@ -12,6 +12,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(path = "api/v1/test")
+@CrossOrigin("*")
 public class TestController {
 
     private final TestService testService;
@@ -22,7 +23,7 @@ public class TestController {
     }
 
     @PostMapping(path = "/createTest")
-    public ResponseEntity<TestRequest> addTest(@RequestBody TestRequest testRequest){
+    public ResponseEntity<TestRequest> addTest(@ModelAttribute TestRequest testRequest){
         TestRequest testRequest1 = testService.createTest(testRequest);
 
         return ResponseEntity.status(HttpStatus.CREATED).body(testRequest1);
@@ -35,12 +36,12 @@ public class TestController {
         return ResponseEntity.ok(testRequests);
     }
 
-//    @GetMapping(path = "/search/{testName}")
-//    public ResponseEntity<List<TestRequest>> getAllTestsByName(@PathVariable String testName){
-//        List<TestRequest>  testRequests =testService.getAllTestByName(testName);
-//
-//        return ResponseEntity.ok(testRequests);
-//    }
+    @GetMapping(path = "/search/{testName}")
+    public ResponseEntity<List<TestRequest>> getAllTestsByName(@PathVariable String testName){
+        List<TestRequest>  testRequests =testService.getAllTestByTestName(testName);
+
+        return ResponseEntity.ok(testRequests);
+    }
 
 //    @DeleteMapping(path = "/deleteTest/{testId}")
 //    public ResponseEntity<Void> deleteTests(@PathVariable Long testId){
@@ -50,4 +51,6 @@ public class TestController {
 //        }
 //        return ResponseEntity.notFound().build();
 //    }
+
+
 }
