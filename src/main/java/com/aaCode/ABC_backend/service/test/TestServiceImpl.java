@@ -57,13 +57,13 @@ public class TestServiceImpl implements TestService{
         return tests.stream().map(Test::getRequestDto).collect(Collectors.toList());
     }
 
-//    public boolean deleteTest(Long id){
-//        Optional<Test> optionalTest = testRepo.findById(id);
-//        if (optionalTest.isPresent()){
-//            testRepo.deleteById(id);
-//
-//            return true;
-//        }
-//        return false;
-//    }
+    public boolean deleteTest(Long testId){
+        Optional<Test> optionalTest = testRepo.findById(testId);
+        if (optionalTest.isPresent()){
+            testRepo.deleteById(testId);
+
+            return true;
+        }
+        return false;
+    }
 }

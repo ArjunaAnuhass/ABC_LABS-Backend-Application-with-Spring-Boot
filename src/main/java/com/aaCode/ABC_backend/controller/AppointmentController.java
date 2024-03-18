@@ -14,6 +14,7 @@ import java.io.IOException;
 
 @RestController
 @RequestMapping(path = "api/v1/appointment")
+@CrossOrigin("*")
 public class AppointmentController {
 
     private final AppointmentService appointmentService;

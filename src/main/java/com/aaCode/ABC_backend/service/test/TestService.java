@@ -14,7 +14,7 @@ public interface TestService {
 
     List<TestRequest> getAllTestByTestName(String testName);
 
-//    boolean deleteTest(Long id);
+    boolean deleteTest(Long testId);
 
 
 

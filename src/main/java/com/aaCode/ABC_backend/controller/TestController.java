@@ -43,14 +43,14 @@ public class TestController {
         return ResponseEntity.ok(testRequests);
     }
 
-//    @DeleteMapping(path = "/deleteTest/{testId}")
-//    public ResponseEntity<Void> deleteTests(@PathVariable Long testId){
-//        boolean deleted = testService.deleteTest(testId);
-//        if (deleted){
-//            return ResponseEntity.noContent().build();
-//        }
-//        return ResponseEntity.notFound().build();
-//    }
+    @DeleteMapping(path = "/deleteTest/{testId}")
+    public ResponseEntity<Void> deleteTests(@PathVariable Long testId){
+        boolean deleted = testService.deleteTest(testId);
+        if (deleted){
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.notFound().build();
+    }
 
 
 }
