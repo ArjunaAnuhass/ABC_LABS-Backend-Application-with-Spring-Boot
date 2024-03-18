@@ -21,7 +21,7 @@ public class DoctorController {
         this.doctorService = doctorService;
     }
 
-    @PostMapping(path = "/addDcotor")
+    @PostMapping(path = "/addDoctor")
     public ResponseEntity<Doctor> addDoctor(@RequestBody DoctorRequest doctorRequest){
         Doctor doctor = doctorService.createDoctor(doctorRequest);
 

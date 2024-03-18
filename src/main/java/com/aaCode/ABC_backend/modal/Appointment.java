@@ -28,11 +28,11 @@ public class Appointment {
     @Column(name = "appointment_id")
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "patient_id")
     private Patient patient;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @OneToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "test_id")
     @OnDelete(action = OnDeleteAction.CASCADE)
     private Test test;
@@ -41,7 +41,7 @@ public class Appointment {
     @JoinColumn(name = "doctor_id")
     private Doctor doctor;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @OneToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "id", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     private User user;
@@ -56,18 +56,19 @@ public class Appointment {
 
     private Long price;
 
-    public AddAppointmentRequest getDto(){
-        AddAppointmentRequest addAppointmentRequest = new AddAppointmentRequest();
-
-        addAppointmentRequest.setUserId(user.getId());
-        addAppointmentRequest.setTestId(test.getTestId());
-        addAppointmentRequest.setDoctorId(doctor.getId());
-        addAppointmentRequest.setPatientId(patient.getId());
-        addAppointmentRequest.setAppointmentStatus(AppointmentStatus.Scheduled);
-        addAppointmentRequest.setCurrentDateTime(currentDateTime);
-        addAppointmentRequest.setAppointmentDateTime(appointmentDateTime);
-        addAppointmentRequest.setPrice(price);
-
-        return addAppointmentRequest;
-    }
+//    public AddAppointmentRequest getDto(){
+//        AddAppointmentRequest addAppointmentRequest = new AddAppointmentRequest();
+//
+//        addAppointmentRequest.setDoctorId(doctor.getId());
+//        addAppointmentRequest.setPatientId(patient.getId());
+//        addAppointmentRequest.setTestId(test.getTestId());
+//        addAppointmentRequest.setUserId(user.getId());
+//
+//        addAppointmentRequest.setCurrentDateTime(currentDateTime);
+//        addAppointmentRequest.setAppointmentDateTime(appointmentDateTime);
+//        addAppointmentRequest.setAppointmentStatus(AppointmentStatus.Scheduled);
+//        addAppointmentRequest.setPrice(price);
+//
+//        return addAppointmentRequest;
+//    }
 }

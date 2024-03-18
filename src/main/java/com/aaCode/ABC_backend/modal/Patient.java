@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.io.Serializable;
 import java.text.DateFormat;
 import java.util.Date;
+import java.util.UUID;
 
 @Entity
 @Data
@@ -33,6 +34,6 @@ public class Patient implements Serializable {
     private Date dob;
 
     private String medicalHistory;
-    private String patientCode;
+    private UUID patientCode;
 
 }

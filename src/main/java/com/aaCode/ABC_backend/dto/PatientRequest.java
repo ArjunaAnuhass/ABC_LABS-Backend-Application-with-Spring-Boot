@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
 import java.util.Date;
+import java.util.UUID;
 
 @Data
 public class PatientRequest {
@@ -16,5 +17,5 @@ public class PatientRequest {
     private String phone;
     private Date dob;
     private String medicalHistory;
-    private String patientCode;
+    private UUID patientCode;
 }

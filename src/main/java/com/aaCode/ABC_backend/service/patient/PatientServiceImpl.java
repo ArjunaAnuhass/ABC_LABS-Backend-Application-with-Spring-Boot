@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class PatientServiceImpl implements PatientService{
@@ -27,7 +28,7 @@ public class PatientServiceImpl implements PatientService{
         patient.setPhone(patientRequest.getPhone());
         patient.setDob(patientRequest.getDob());
         patient.setMedicalHistory(patientRequest.getMedicalHistory());
-        patient.setPatientCode(patientRequest.getPatientCode());
+        patient.setPatientCode(UUID.randomUUID());
 
         return patientRepo.save(patient);
     }
