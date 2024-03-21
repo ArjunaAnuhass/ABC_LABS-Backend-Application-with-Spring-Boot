@@ -3,10 +3,13 @@ package com.aaCode.ABC_backend.controller;
 import com.aaCode.ABC_backend.dto.AuthenticationRequest;
 import com.aaCode.ABC_backend.dto.response.AuthenticationResponse;
 import com.aaCode.ABC_backend.dto.RegisterRequest;
+import com.aaCode.ABC_backend.modal.User;
 import com.aaCode.ABC_backend.service.security.AuthenticationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping(path = "api/v1/authentication")
@@ -35,5 +38,10 @@ public class AuthenticationController {
     @PostMapping(path = "/authenticate")
     public ResponseEntity<AuthenticationResponse> authenticate(@RequestBody AuthenticationRequest request){
         return ResponseEntity.ok(authenticationService.authenticate(request));
+    }
+
+    @GetMapping(path = "/getAllUsers")
+    public ResponseEntity<List<User>> getAllUsers(){
+        return ResponseEntity.ok(authenticationService.getAllUsers());
     }
 }

@@ -29,6 +29,7 @@ public class SecurityConfig {
                         .requestMatchers("api/v1/authentication/authenticate").permitAll()
                         .requestMatchers("api/v1/authentication/register2").permitAll()
                         .requestMatchers("api/v1/authentication/register3").permitAll()
+                        .requestMatchers("api/v1/authentication/getAllUsers").permitAll()
                         .requestMatchers("api/v1/technician/**").permitAll()
                         .requestMatchers("api/v1/patient/**").permitAll()
                         .requestMatchers("api/v1/doctor/**").permitAll()
