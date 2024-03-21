@@ -44,4 +44,28 @@ public class AppointmentController {
     public ResponseEntity<List<Appointments>> getAllApp(){
         return ResponseEntity.ok(appointmentService.getAllAppointment());
     }
+
+    @GetMapping(path = "/getAppointmentById/{id}")
+    public ResponseEntity<Appointments> getAppointmentById(@PathVariable Long id){
+        Appointments appointments = appointmentService.getAppointmentById(id);
+
+        if (appointments != null){
+            return ResponseEntity.ok(appointments);
+        }
+        else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @PutMapping(path = "/updateAppointment/{id}")
+    public ResponseEntity<Appointments> updateTest(@PathVariable Long id, @RequestBody Appointments appointments){
+        Appointments updateAppointment = appointmentService.updateAppointment(id, appointments);
+
+        if (updateAppointment != null){
+            return ResponseEntity.ok(updateAppointment);
+        }
+        else {
+            return ResponseEntity.notFound().build();
+        }
+    }
 }

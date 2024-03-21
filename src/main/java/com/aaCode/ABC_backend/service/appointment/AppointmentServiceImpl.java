@@ -2,6 +2,7 @@ package com.aaCode.ABC_backend.service.appointment;
 
 import com.aaCode.ABC_backend.dto.AddAppointmentRequest;
 import com.aaCode.ABC_backend.dto.AppointmentRequest;
+import com.aaCode.ABC_backend.dto.TestRequest;
 import com.aaCode.ABC_backend.modal.*;
 import com.aaCode.ABC_backend.modal.enums.AppointmentStatus;
 import com.aaCode.ABC_backend.repository.*;
@@ -39,6 +40,35 @@ public class AppointmentServiceImpl implements AppointmentService{
 
     public List<Appointments> getAllAppointment(){
         return appointmentRepo.findAll();
+    }
+
+    public Appointments getAppointmentById(Long id){
+        Optional<Appointments> optionalAppointments = appointmentRepo.findById(id);
+
+        if (optionalAppointments.isPresent()){
+            return optionalAppointments.get();
+        }
+        else {
+            return null;
+        }
+    }
+
+    public Appointments updateAppointment(Long id, Appointments appointments){
+        Optional<Appointments> optionalAppointments = appointmentRepo.findById(id);
+
+        if (optionalAppointments.isPresent()){
+            Appointments appointments1 = optionalAppointments.get();
+
+            appointments1.setTestName(appointments.getTestName());
+            appointments1.setPatientName(appointments.getPatientName());
+            appointments1.setAppointmentDate(appointments.getAppointmentDate());
+            appointments1.setTestName(appointments.getTestName());
+
+            return appointmentRepo.save(appointments1);
+        }
+        else {
+            return null;
+        }
     }
 
 
