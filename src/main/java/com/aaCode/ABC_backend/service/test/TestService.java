@@ -16,6 +16,10 @@ public interface TestService {
 
     boolean deleteTest(Long testId);
 
+    TestRequest getTestById(Long testId);
+
+    TestRequest UpdateTest(Long testId, TestRequest testRequest);
+
 
 
 }

@@ -52,5 +52,29 @@ public class TestController {
         return ResponseEntity.notFound().build();
     }
 
+    @GetMapping(path = "/getTestById/{testId}")
+    public ResponseEntity<TestRequest> getTestById(@PathVariable Long testId){
+        TestRequest testRequest = testService.getTestById(testId);
+
+        if (testRequest != null){
+            return ResponseEntity.ok(testRequest);
+        }
+        else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @PutMapping(path = "/updateTest/{testId}")
+    public ResponseEntity<TestRequest> updateTest(@PathVariable Long testId, @ModelAttribute TestRequest testRequest){
+        TestRequest updateTest = testService.UpdateTest(testId, testRequest);
+
+        if (updateTest != null){
+            return ResponseEntity.ok(updateTest);
+        }
+        else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
 
 }
