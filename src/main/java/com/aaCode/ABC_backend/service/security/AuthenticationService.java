@@ -1,8 +1,10 @@
 package com.aaCode.ABC_backend.service.security;
 
 import com.aaCode.ABC_backend.dto.AuthenticationRequest;
+import com.aaCode.ABC_backend.dto.TestRequest;
 import com.aaCode.ABC_backend.dto.response.AuthenticationResponse;
 import com.aaCode.ABC_backend.dto.RegisterRequest;
+import com.aaCode.ABC_backend.modal.Test;
 import com.aaCode.ABC_backend.repository.UserRepo;
 import com.aaCode.ABC_backend.modal.enums.Role;
 import com.aaCode.ABC_backend.modal.User;
@@ -14,6 +16,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -105,5 +108,33 @@ public class AuthenticationService {
 
     public List<User> getAllUsers(){
         return userRepo.findAll();
+    }
+
+    public RegisterRequest getUserById(Integer id){
+        Optional<User> optionalUser = userRepo.findById(id);
+
+        if (optionalUser.isPresent()){
+            return optionalUser.get().getUserDto();
+        }
+        else {
+            return null;
+        }
+    }
+
+    public RegisterRequest updateUser(Integer id, RegisterRequest registerRequest){
+        Optional<User> optionalUser = userRepo.findById(id);
+
+        if (optionalUser.isPresent()){
+            User user = optionalUser.get();
+
+            user.setFirstname(registerRequest.getFirstname());
+            user.setLastname(registerRequest.getLastname());
+            user.setEmail(registerRequest.getEmail());
+
+            return userRepo.save(user).getUserDto();
+        }
+        else {
+            return null;
+        }
     }
 }

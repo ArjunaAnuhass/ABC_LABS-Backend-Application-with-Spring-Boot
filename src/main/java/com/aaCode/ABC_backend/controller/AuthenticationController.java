@@ -1,6 +1,7 @@
 package com.aaCode.ABC_backend.controller;
 
 import com.aaCode.ABC_backend.dto.AuthenticationRequest;
+import com.aaCode.ABC_backend.dto.TestRequest;
 import com.aaCode.ABC_backend.dto.response.AuthenticationResponse;
 import com.aaCode.ABC_backend.dto.RegisterRequest;
 import com.aaCode.ABC_backend.modal.User;
@@ -43,5 +44,29 @@ public class AuthenticationController {
     @GetMapping(path = "/getAllUsers")
     public ResponseEntity<List<User>> getAllUsers(){
         return ResponseEntity.ok(authenticationService.getAllUsers());
+    }
+
+    @GetMapping(path = "/getUserById/{id}")
+    public ResponseEntity<RegisterRequest> getUserById(@PathVariable Integer id){
+        RegisterRequest registerRequest = authenticationService.getUserById(id);
+
+        if (registerRequest != null){
+            return ResponseEntity.ok(registerRequest);
+        }
+        else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @PutMapping(path = "/updateUser/{id}")
+    public ResponseEntity<RegisterRequest> updateTest(@PathVariable Integer id, @ModelAttribute RegisterRequest registerRequest){
+        RegisterRequest updateUser = authenticationService.updateUser(id, registerRequest);
+
+        if (updateUser != null){
+            return ResponseEntity.ok(updateUser);
+        }
+        else {
+            return ResponseEntity.notFound().build();
+        }
     }
 }

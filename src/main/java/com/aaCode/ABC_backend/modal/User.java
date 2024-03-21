@@ -1,5 +1,8 @@
 package com.aaCode.ABC_backend.modal;
 
+import com.aaCode.ABC_backend.dto.AuthenticationRequest;
+import com.aaCode.ABC_backend.dto.RegisterRequest;
+import com.aaCode.ABC_backend.dto.TestRequest;
 import com.aaCode.ABC_backend.modal.enums.Role;
 import jakarta.persistence.*;
 import jakarta.persistence.Id;
@@ -67,5 +70,17 @@ public class User implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
+    }
+
+    public RegisterRequest getUserDto(){
+        RegisterRequest registerRequest = new RegisterRequest();
+
+        registerRequest.setId(id);
+        registerRequest.setFirstname(firstname);
+        registerRequest.setLastname(lastname);
+        registerRequest.setEmail(email);
+        registerRequest.setPassword(password);
+
+        return registerRequest;
     }
 }
