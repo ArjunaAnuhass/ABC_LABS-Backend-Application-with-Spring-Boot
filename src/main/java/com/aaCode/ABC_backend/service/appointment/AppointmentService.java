@@ -6,9 +6,12 @@ import com.aaCode.ABC_backend.modal.Appointments;
 import org.springframework.http.ResponseEntity;
 
 import java.io.IOException;
+import java.util.List;
 
 public interface AppointmentService {
 
     public Appointments addAppointment(AppointmentRequest appointmentRequest);
+
+    List<Appointments> getAllAppointment();
 
 }

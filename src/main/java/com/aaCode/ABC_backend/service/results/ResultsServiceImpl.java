@@ -6,6 +6,8 @@ import com.aaCode.ABC_backend.repository.ResultsRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ResultsServiceImpl implements ResultService{
 
@@ -26,5 +28,9 @@ public class ResultsServiceImpl implements ResultService{
         results.setAppointmentName(resultRequest.getAppointmentName());
 
         return resultsRepo.save(results);
+    }
+
+    public List<Results> getAllReuslts(){
+        return resultsRepo.findAll();
     }
 }

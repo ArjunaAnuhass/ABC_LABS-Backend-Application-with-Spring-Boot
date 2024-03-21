@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
+import java.util.List;
 
 @RestController
 @RequestMapping(path = "api/v1/appointment")
@@ -37,5 +38,10 @@ public class AppointmentController {
         Appointments appointments = appointmentService.addAppointment(appointmentRequest);
 
         return ResponseEntity.status(HttpStatus.CREATED).body(appointments);
+    }
+
+    @GetMapping(path = "/getAllAppointments")
+    public ResponseEntity<List<Appointments>> getAllApp(){
+        return ResponseEntity.ok(appointmentService.getAllAppointment());
     }
 }
