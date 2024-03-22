@@ -59,8 +59,8 @@ public class AuthenticationController {
     }
 
     @PutMapping(path = "/updateUser/{id}")
-    public ResponseEntity<RegisterRequest> updateTest(@PathVariable Integer id, @ModelAttribute RegisterRequest registerRequest){
-        RegisterRequest updateUser = authenticationService.updateUser(id, registerRequest);
+    public ResponseEntity<User> updateTest(@PathVariable Integer id, @RequestBody User user){
+        User updateUser = authenticationService.updateUser(id, user);
 
         if (updateUser != null){
             return ResponseEntity.ok(updateUser);

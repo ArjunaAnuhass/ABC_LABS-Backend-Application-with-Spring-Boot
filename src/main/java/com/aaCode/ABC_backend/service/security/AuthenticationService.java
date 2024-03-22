@@ -121,17 +121,17 @@ public class AuthenticationService {
         }
     }
 
-    public RegisterRequest updateUser(Integer id, RegisterRequest registerRequest){
+    public User updateUser(Integer id, User user){
         Optional<User> optionalUser = userRepo.findById(id);
 
         if (optionalUser.isPresent()){
-            User user = optionalUser.get();
+            User user1 = optionalUser.get();
 
-            user.setFirstname(registerRequest.getFirstname());
-            user.setLastname(registerRequest.getLastname());
-            user.setEmail(registerRequest.getEmail());
+            user1.setFirstname(user.getFirstname());
+            user1.setLastname(user.getLastname());
+            user1.setEmail(user.getEmail());
 
-            return userRepo.save(user).getUserDto();
+            return userRepo.save(user1);
         }
         else {
             return null;

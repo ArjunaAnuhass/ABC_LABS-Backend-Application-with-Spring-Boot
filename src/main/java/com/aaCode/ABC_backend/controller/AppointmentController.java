@@ -55,7 +55,7 @@ public class AppointmentController {
     }
 
     @PutMapping(path = "/updateAppointment/{id}")
-    public ResponseEntity<Appointments> updateTest(@PathVariable Long id, @RequestBody Appointments appointments){
+    public ResponseEntity<Appointments> updateTest(@PathVariable Long id, @ModelAttribute Appointments appointments){
         Appointments updateAppointment = appointmentService.updateAppointment(id, appointments);
 
         if (updateAppointment != null){
