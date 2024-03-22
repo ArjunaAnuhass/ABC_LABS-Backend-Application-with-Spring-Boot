@@ -18,4 +18,6 @@ public interface AppointmentService {
 
     Appointments updateAppointment(Long id, Appointments appointments);
 
+    List<String> getAllAppointmentsByAppointmentName(String appointmentName);
+
 }

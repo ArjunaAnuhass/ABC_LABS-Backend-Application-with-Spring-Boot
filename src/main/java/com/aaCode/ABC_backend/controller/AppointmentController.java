@@ -1,8 +1,6 @@
 package com.aaCode.ABC_backend.controller;
 
-import com.aaCode.ABC_backend.dto.AddAppointmentRequest;
 import com.aaCode.ABC_backend.dto.AppointmentRequest;
-import com.aaCode.ABC_backend.dto.TestRequest;
 import com.aaCode.ABC_backend.modal.Appointments;
 import com.aaCode.ABC_backend.service.appointment.AppointmentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +8,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.io.IOException;
 import java.util.List;
 
 @RestController
@@ -67,5 +64,12 @@ public class AppointmentController {
         else {
             return ResponseEntity.notFound().build();
         }
+    }
+
+    @GetMapping(path = "/searchAppointment/{appointmentName}")
+    public ResponseEntity<List<String>> getAllAppointmentsByName(@PathVariable String appointmentName){
+        List<String> appointments =appointmentService.getAllAppointmentsByAppointmentName(appointmentName);
+
+        return ResponseEntity.ok(appointments);
     }
 }

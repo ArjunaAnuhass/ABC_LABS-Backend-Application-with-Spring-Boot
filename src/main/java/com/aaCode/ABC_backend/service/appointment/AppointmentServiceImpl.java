@@ -1,18 +1,15 @@
 package com.aaCode.ABC_backend.service.appointment;
 
-import com.aaCode.ABC_backend.dto.AddAppointmentRequest;
 import com.aaCode.ABC_backend.dto.AppointmentRequest;
-import com.aaCode.ABC_backend.dto.TestRequest;
 import com.aaCode.ABC_backend.modal.*;
-import com.aaCode.ABC_backend.modal.enums.AppointmentStatus;
 import com.aaCode.ABC_backend.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Service
 public class AppointmentServiceImpl implements AppointmentService{
@@ -69,6 +66,12 @@ public class AppointmentServiceImpl implements AppointmentService{
         else {
             return null;
         }
+    }
+
+    public List<String> getAllAppointmentsByAppointmentName(String appointmentName){
+        List<Appointments> appointments = appointmentRepo.findAllByAppointmentNameContaining(appointmentName);
+
+        return appointments.stream().map(Appointments::getAppointmentName).collect(Collectors.toList());
     }
 
 
