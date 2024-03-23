@@ -2,11 +2,13 @@ package com.aaCode.ABC_backend.service.doctor;
 
 import com.aaCode.ABC_backend.dto.DoctorRequest;
 import com.aaCode.ABC_backend.modal.Doctor;
+import com.aaCode.ABC_backend.modal.Patient;
 import com.aaCode.ABC_backend.repository.DoctorRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class DoctorServiceImpl implements DoctorService{
@@ -31,5 +33,34 @@ public class DoctorServiceImpl implements DoctorService{
 
     public List<Doctor> getAllDoctors(){
         return doctorRepo.findAll();
+    }
+
+    public Doctor getDoctorById(Long id){
+        Optional<Doctor> optionalDoctor = doctorRepo.findById(id);
+
+        if (optionalDoctor.isPresent()){
+            return optionalDoctor.get();
+        }
+        else {
+            return null;
+        }
+    }
+
+    public Doctor updateDoctor(Long id, Doctor doctor){
+        Optional<Doctor> optionalDoctor = doctorRepo.findById(id);
+
+        if (optionalDoctor.isPresent()){
+            Doctor doctor1 = optionalDoctor.get();
+
+            doctor1.setFullname(doctor.getFullname());
+            doctor1.setEmail(doctor.getEmail());
+            doctor1.setPhone(doctor.getPhone());
+            doctor1.setSpecialization(doctor.getSpecialization());
+
+            return doctorRepo.save(doctor1);
+        }
+        else {
+            return null;
+        }
     }
 }
