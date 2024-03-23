@@ -110,11 +110,11 @@ public class AuthenticationService {
         return userRepo.findAll();
     }
 
-    public RegisterRequest getUserById(Integer id){
+    public User getUserById(Integer id){
         Optional<User> optionalUser = userRepo.findById(id);
 
         if (optionalUser.isPresent()){
-            return optionalUser.get().getUserDto();
+            return optionalUser.get();
         }
         else {
             return null;

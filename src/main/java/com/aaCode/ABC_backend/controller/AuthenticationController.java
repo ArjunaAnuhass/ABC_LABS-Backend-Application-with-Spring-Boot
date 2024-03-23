@@ -47,11 +47,11 @@ public class AuthenticationController {
     }
 
     @GetMapping(path = "/getUserById/{id}")
-    public ResponseEntity<RegisterRequest> getUserById(@PathVariable Integer id){
-        RegisterRequest registerRequest = authenticationService.getUserById(id);
+    public ResponseEntity<User> getUserById(@PathVariable Integer id){
+        User user = authenticationService.getUserById(id);
 
-        if (registerRequest != null){
-            return ResponseEntity.ok(registerRequest);
+        if (user != null){
+            return ResponseEntity.ok(user);
         }
         else {
             return ResponseEntity.notFound().build();
@@ -59,7 +59,7 @@ public class AuthenticationController {
     }
 
     @PutMapping(path = "/updateUser/{id}")
-    public ResponseEntity<User> updateTest(@PathVariable Integer id, @RequestBody User user){
+    public ResponseEntity<User> updateTest(@PathVariable Integer id, @ModelAttribute User user){
         User updateUser = authenticationService.updateUser(id, user);
 
         if (updateUser != null){
